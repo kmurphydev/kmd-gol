@@ -2,7 +2,11 @@ import React from 'react';
 import Square from './square.component';
 
 
+// TODO:
+// fix table styling so that the spacing between table elements doesn't change as you zoom in
+// fix table stylign so that there is less of a (no?) gap between elements
 
+// add app state, logic for handling next generation of GOL
 
 const SquareGrid = (props) => {
     const {
