@@ -8,6 +8,7 @@ import * as TILES from '../constants/tiles.constants';
 const gridTableStyle = {
     border: '2px solid black',
     borderSpacing: '0px',
+    margin: 'auto'
 };
 
 const gridRowStyle = {
