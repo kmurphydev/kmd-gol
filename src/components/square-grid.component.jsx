@@ -8,13 +8,33 @@ import Square from './square.component';
 
 // add app state, logic for handling next generation of GOL
 
+const gridTableStyle = {
+    border: '2px solid black',
+    borderSpacing: '0px',
+};
+
+const gridRowStyle = {
+    padding: '0px',
+    margin: '0px',
+};
+
+const gridDataStyle = {
+    padding: '0px',
+    margin: '0px'
+};
+
+const gridSize = 50; //% of vh
+
 const SquareGrid = (props) => {
     const {
-        gridWidth = 10,
-        gridHeight = 10,
+        gridWidth = 20,
+        gridHeight = 20,
         // squareSize = "40px"
-        squareSize = "1vw"
+        // squareSize = "3vw"
     } = props;
+
+
+    const squareSize = `${gridSize / Math.max(gridWidth, gridHeight)}vh`;
 
     const rows = new Array(gridHeight);
     for (var i = 0; i < gridHeight; i++) {
@@ -27,17 +47,17 @@ const SquareGrid = (props) => {
 
     return (
 
-        <table>
+        <table style={gridTableStyle}>
             <tbody>
 
                 {rows.map((cols, rowIdx) => {
                     return (
-                        <tr key={rowIdx}>
+                        <tr key={rowIdx} style={gridRowStyle}>
                             {
 
                                 cols.map((tile, colIdx) => {
                                     return (
-                                        <td>
+                                        <td style={gridDataStyle}>
                                             <Square key={gridWidth * rowIdx + colIdx} on={tile} squareSize={squareSize} />
                                         </td>
                                     )
