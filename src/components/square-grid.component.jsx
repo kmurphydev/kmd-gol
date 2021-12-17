@@ -52,7 +52,7 @@ const SquareGrid = (props) => {
                                 cols.map((tile, colIdx) => {
                                     const color = tile === TILES.STATES.ALIVE ? config.aliveColor : config.emptyColor;
                                     return (
-                                        <td style={gridDataStyle}>
+                                        <td style={gridDataStyle} key={gridWidth * rowIdx + colIdx}>
                                             <Square key={gridWidth * rowIdx + colIdx} color={color} squareSize={squareSize} />
                                         </td>
                                     )
