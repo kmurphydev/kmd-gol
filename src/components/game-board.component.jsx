@@ -10,8 +10,6 @@ import * as GAME from '../constants/game.constants';
 // todo:
 
 
-// BUG... OR FEATURE? : pausing only stops the game on the next frame 
-
 // GameBoard: handles game logic and board state for a single board. passes board state down to SquareGrid to actually render the board
 export const GameBoard = (props) => {
 
@@ -23,7 +21,7 @@ export const GameBoard = (props) => {
         }
     } = props;
 
-    const { frameTime } = config;
+    const { time } = props;
 
     const { gameState } = props;
 
@@ -32,21 +30,15 @@ export const GameBoard = (props) => {
     const { gridHeight, gridWidth } = boardSettings;
 
     useEffect(() => {
-        if (tiles === []) {
+        if (tiles.length === 0) {
             const newTiles = generateTiles(boardSettings);
             setTiles(newTiles);
         }
         else if (gameState === GAME.STATES.PLAY) {
             const newTiles = updateTiles(tiles, boardSettings);
-            setTimeout(() => {
-                //check after the timer if the gamestate is still in play
-                if (gameState === GAME.STATES.PLAY) {
-                    setTiles(newTiles);
-                }
-            }, frameTime);
+            setTiles(newTiles);
         }
-    }, [tiles, gameState])
-
+    }, [time])
 
     if (tiles === []) {
         return null;
