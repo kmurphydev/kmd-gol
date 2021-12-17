@@ -1,7 +1,6 @@
 
 import './App.css';
-import SquareGrid from './components/square-grid.component';
-
+import { Game } from './components/game.component';
 // TODO:
 // add header with:
 //    start button
@@ -13,13 +12,16 @@ function App() {
 
   const config = {
     aliveColor: 'blue',
-    emptyColor: 'white'
-  }
+    emptyColor: 'white',
+    gridSizeVh: 50
+  };
+  // on pause: save gameState to localStorage and allow changing settings
+  // on resume, rehydrate it and block off settings again
 
 
   return (
     <div className="App">
-      <SquareGrid config={config} />
+      <Game config={config} />
     </div>
   );
 }

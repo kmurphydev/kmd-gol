@@ -3,11 +3,7 @@ import Square from './square.component';
 
 import * as TILES from '../constants/tiles.constants';
 
-// TODO:
-// fix table styling so that the spacing between table elements doesn't change as you zoom in
-// fix table stylign so that there is less of a (no?) gap between elements
 
-// add app state, logic for handling next generation of GOL
 
 const gridTableStyle = {
     border: '2px solid black',
@@ -24,40 +20,30 @@ const gridDataStyle = {
     margin: '0px'
 };
 
-const gridSize = 50; //% of vh
 
 
-
+// SquareGrid: handles rendering a given board based on tiles and config supplied as props
 const SquareGrid = (props) => {
     const {
         gridWidth = 20,
         gridHeight = 20,
-        // squareSize = "40px"
-        // squareSize = "3vw"
         config = {
             aliveColor: 'blue',
-            emptyColor: 'white'
+            emptyColor: 'white',
+            gridSizeVh: 50
         },
+        tiles
     } = props;
 
 
-    const squareSize = `${gridSize / Math.max(gridWidth, gridHeight)}vh`;
-
-    const rows = new Array(gridHeight);
-    for (var i = 0; i < gridHeight; i++) {
-        rows[i] = new Array(gridWidth);
-        for (var j = 0; j < gridWidth; j++) {
-            rows[i][j] = Math.round(Math.random());
-        }
-    }
-
+    const squareSize = `${config.gridSizeVh / Math.max(gridWidth, gridHeight)}vh`;
 
     return (
 
         <table style={gridTableStyle}>
             <tbody>
 
-                {rows.map((cols, rowIdx) => {
+                {tiles.map((cols, rowIdx) => {
                     return (
                         <tr key={rowIdx} style={gridRowStyle}>
                             {
