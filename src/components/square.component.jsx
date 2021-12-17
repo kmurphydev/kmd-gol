@@ -1,24 +1,19 @@
 import React from 'react';
 
 
-const Square = ({ on, 
-squareSize = "20px" }) => {
+const Square = ({ color,
+    squareSize = "20px" }) => {
     const style = {
-        backgroundColor: on ? "red" : "blue",
+        backgroundColor: color,
         height: squareSize,
         width: squareSize
     }
     return (
-        on ?
-            <div style={style}>
-                
-            </div>
+        <div style={style} />
 
-            :
 
-            <div style={style}>
-                
-            </div>
+
+
 
     );
 };

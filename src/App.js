@@ -10,9 +10,16 @@ import SquareGrid from './components/square-grid.component';
 
 
 function App() {
+
+  const config = {
+    aliveColor: 'blue',
+    emptyColor: 'white'
+  }
+
+
   return (
     <div className="App">
-      <SquareGrid/>
+      <SquareGrid config={config} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './square.component';
 
+import * as TILES from '../constants/tiles.constants';
 
 // TODO:
 // fix table styling so that the spacing between table elements doesn't change as you zoom in
@@ -25,12 +26,18 @@ const gridDataStyle = {
 
 const gridSize = 50; //% of vh
 
+
+
 const SquareGrid = (props) => {
     const {
         gridWidth = 20,
         gridHeight = 20,
         // squareSize = "40px"
         // squareSize = "3vw"
+        config = {
+            aliveColor: 'blue',
+            emptyColor: 'white'
+        },
     } = props;
 
 
@@ -56,9 +63,10 @@ const SquareGrid = (props) => {
                             {
 
                                 cols.map((tile, colIdx) => {
+                                    const color = tile === TILES.STATES.ALIVE ? config.aliveColor : config.emptyColor;
                                     return (
                                         <td style={gridDataStyle}>
-                                            <Square key={gridWidth * rowIdx + colIdx} on={tile} squareSize={squareSize} />
+                                            <Square key={gridWidth * rowIdx + colIdx} color={color} squareSize={squareSize} />
                                         </td>
                                     )
                                 })
