@@ -8,6 +8,15 @@ import { Game } from './components/game.component';
 //    dropdown for square size (small, med, large) which changes square width as a function of vw
 
 
+const gameContainerStyle = {
+  width: '75vw',
+  alignItems: 'center',
+  margin: 'auto',
+  border: '1px solid lightgrey',
+  borderRadius: '15px',
+  padding: '15px'
+}
+
 function App() {
 
 
@@ -22,7 +31,7 @@ function App() {
           Game of Life Gaming
         </h1>
       </div>
-      <div>
+      <div style={gameContainerStyle}>
         <Game />
       </div>
     </div>

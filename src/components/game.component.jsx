@@ -5,6 +5,17 @@ import { GameBoard } from './game-board.component';
 
 import * as GAME from '../constants/game.constants';
 
+const configBarStyle = {
+    border: '1px solid black',
+    borderRadius: '10px',
+    padding: '10px'
+}
+
+const gameBoardContainerStyle = {
+    padding: '10px',
+}
+
+
 //Game: handles game logic for overall game flow. possibly later will break into Game and GameLevel but not sure
 export const Game = (props) => {
     const config = {
@@ -22,10 +33,10 @@ export const Game = (props) => {
 
     return (
         <div>
-            <div>
+            <div style={configBarStyle} >
                 Play, pause, config buttons will go here
             </div>
-            <div>
+            <div style={gameBoardContainerStyle}>
                 <GameBoard
                     gameState={gameState}
                     setGameState={setGameState}
