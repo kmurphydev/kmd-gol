@@ -26,6 +26,39 @@ export const Game = (props) => {
 
     const [gameState, setGameState] = useState(GAME.STATES.PAUSE);
 
+
+    const renderButton = () => {
+
+        if (gameState === GAME.STATES.PLAY) {
+
+            return (
+                <button
+                    onClick={(e) => {
+                        setGameState(GAME.STATES.PAUSE);
+                    }}
+                >
+                    Pause
+                </button>
+            )
+
+
+        } else if (gameState === GAME.STATES.PAUSE) {
+            return (
+                <button
+                    onClick={e => {
+                        setGameState(GAME.STATES.PLAY)
+                    }}
+                >
+                    Play
+                </button>
+            )
+        } else {
+            return null;
+        }
+
+    }
+
+
     const boardSettings = {
         gridHeight: 20,
         gridWidth: 20
@@ -34,7 +67,14 @@ export const Game = (props) => {
     return (
         <div>
             <div style={configBarStyle} >
-                Play, pause, config buttons will go here
+                <div>
+
+                    Play, pause, config buttons will go here
+                </div>
+                <div>{
+                    renderButton()
+                }
+                </div>
             </div>
             <div style={gameBoardContainerStyle}>
                 <GameBoard
