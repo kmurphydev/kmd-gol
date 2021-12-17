@@ -10,18 +10,21 @@ import { Game } from './components/game.component';
 
 function App() {
 
-  const config = {
-    aliveColor: 'blue',
-    emptyColor: 'white',
-    gridSizeVh: 50
-  };
+
   // on pause: save gameState to localStorage and allow changing settings
   // on resume, rehydrate it and block off settings again
 
 
   return (
     <div className="App">
-      <Game config={config} />
+      <div>
+        <h1>
+          Game of Life Gaming
+        </h1>
+      </div>
+      <div>
+        <Game />
+      </div>
     </div>
   );
 }

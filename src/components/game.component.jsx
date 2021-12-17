@@ -7,8 +7,11 @@ import * as GAME from '../constants/game.constants';
 
 //Game: handles game logic for overall game flow. possibly later will break into Game and GameLevel but not sure
 export const Game = (props) => {
-
-    const { config } = props;
+    const config = {
+        aliveColor: 'blue',
+        emptyColor: 'white',
+        gridSizeVh: 50
+    };
 
     const [gameState, setGameState] = useState(GAME.STATES.PAUSE);
 
@@ -20,7 +23,7 @@ export const Game = (props) => {
     return (
         <div>
             <div>
-                Play, pause buttons will go here
+                Play, pause, config buttons will go here
             </div>
             <div>
                 <GameBoard
