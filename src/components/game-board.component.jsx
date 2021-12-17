@@ -1,5 +1,6 @@
 import SquareGrid from "./square-grid.component";
-
+import { useEffect, useState } from "react";
+import { generateTiles } from "../helpers/generateTiles";
 
 // TODO: add app state to handle simulation of GOL
 //  every frame (delay between frames depends on game speed config)
@@ -18,21 +19,24 @@ export const GameBoard = (props) => {
     } = props;
 
 
+    const [tiles, setTiles] = useState([]);
+
     const { gridHeight, gridWidth } = boardSettings;
 
-    const tiles = new Array(gridHeight);
-    for (var i = 0; i < gridHeight; i++) {
-        tiles[i] = new Array(gridWidth);
-        for (var j = 0; j < gridWidth; j++) {
-            tiles[i][j] = Math.round(Math.random());
-        }
-    };
+    useEffect(() => {
+        const newTiles = generateTiles(boardSettings);
+        setTiles(newTiles);
+    }, [])
 
 
-    return (
-        <div>
-            <SquareGrid tiles={tiles} config={config} gridWidth={gridWidth} gridHeight={gridHeight} />
-        </div>
-    );
+    if (tiles === []) {
+        return null;
+    } else {
+        return (
+            <div>
+                <SquareGrid tiles={tiles} config={config} gridWidth={gridWidth} gridHeight={gridHeight} />
+            </div>
+        );
+    }
 
 };
