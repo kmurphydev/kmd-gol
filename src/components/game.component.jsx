@@ -21,7 +21,8 @@ export const Game = (props) => {
     const config = {
         aliveColor: 'blue',
         emptyColor: 'white',
-        gridSizeVh: 50
+        gridSizeVh: 50,
+        frameTime: 660.66667
     };
 
     const [gameState, setGameState] = useState(GAME.STATES.PAUSE);
