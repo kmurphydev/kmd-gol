@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import { GameBoard } from './game-board.component';
 
+import { ConfigBar } from './config-bar.component';
+
 import * as GAME from '../constants/game.constants';
 import { useFrameTime } from '../helpers/useFrameTime.hooks';
 
@@ -15,7 +17,7 @@ const configBarStyle = {
 const gameBoardContainerStyle = {
     padding: '10px',
 }
-const renderButton = (gameState, setGameState) => {
+const renderPlayButton = (gameState, setGameState) => {
 
     if (gameState === GAME.STATES.PLAY) {
         return (
@@ -46,16 +48,19 @@ const renderButton = (gameState, setGameState) => {
 
 //Game: handles game logic for overall game flow. possibly later will break into Game and GameLevel but not sure
 export const Game = (props) => {
-    const config = {
+
+    const defaultConfig = {
         aliveColor: 'blue',
         emptyColor: 'white',
         gridSizeVh: 50,
-        frameLength: 300
+        frameSpeed: 1
     };
+
+    const [config, setConfig] = useState(defaultConfig);
 
     const [gameState, setGameState] = useState(GAME.STATES.PAUSE);
 
-    const frameTime = useFrameTime(config.frameLength);
+    const frameTime = useFrameTime(166.67 / config.frameSpeed);
 
     const boardSettings = {
         gridHeight: 20,
@@ -69,8 +74,11 @@ export const Game = (props) => {
 
                     Play, pause, config buttons will go here
                 </div>
+                <div>
+                    <ConfigBar config={config} setConfig={setConfig} />
+                </div>
                 <div>{
-                    renderButton(gameState, setGameState)
+                    renderPlayButton(gameState, setGameState)
                 }
                 </div>
             </div>
