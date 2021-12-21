@@ -1,6 +1,6 @@
 
 
-
+import * as GAME from '../constants/game.constants';
 
 export const ConfigBar = (props) => {
 
@@ -38,9 +38,21 @@ export const ConfigBar = (props) => {
                     frameSpeed: e.target.value
                 });
             }}>
-                <option value={0.5}>0.5x</option>
-                <option value={1}>1x</option>
-                <option value={2}>2x</option>
+                <option value={GAME.GAME_SPEED.SLOW}>0.5x</option>
+                <option value={GAME.GAME_SPEED.NORMAL}>1x</option>
+                <option value={GAME.GAME_SPEED.FAST}>2x</option>
+            </select>
+            <label for="grid-size">Game size</label>
+            <select name="grid-size" defaultValue={GAME.GRID_SIZE.MEDIUM} onChange={e => {
+                setConfig({
+                    ...config,
+                    gridSizeVh: e.target.value
+                });
+            }}
+            >
+                <option value={GAME.GRID_SIZE.SMALL}>Small</option>
+                <option value={GAME.GRID_SIZE.MEDIUM}>Medium</option>
+                <option value={GAME.GRID_SIZE.LARGE}>Large</option>
             </select>
 
         </form>

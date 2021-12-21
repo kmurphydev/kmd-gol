@@ -52,8 +52,8 @@ export const Game = (props) => {
     const defaultConfig = {
         aliveColor: 'blue',
         emptyColor: 'white',
-        gridSizeVh: 50,
-        frameSpeed: 1
+        gridSizeVh: GAME.GRID_SIZE.MEDIUM,
+        frameSpeed: GAME.GAME_SPEED.NORMAL
     };
 
     const [config, setConfig] = useState(defaultConfig);
