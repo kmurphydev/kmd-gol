@@ -60,7 +60,7 @@ export const Game = (props) => {
 
     const [gameState, setGameState] = useState(GAME.STATES.PAUSE);
 
-    const frameTime = useFrameTime(166.67 / config.frameSpeed);
+    const frameTime = useFrameTime(83.333335 / config.frameSpeed);
 
     const boardSettings = {
         gridHeight: 20,
