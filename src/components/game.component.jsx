@@ -46,6 +46,24 @@ const renderPlayButton = (gameState, setGameState) => {
 
 }
 
+const renderResetButton = (gameState, setGameState) => {
+
+    if (gameState === GAME.STATES.PLAY) {
+        return null;
+    } else {
+        return (
+            <button
+                onClick={e => {
+                    setGameState(GAME.STATES.RESET);
+                }}
+            >
+                Reset
+            </button>
+        );
+    }
+}
+
+
 //Game: handles game logic for overall game flow. possibly later will break into Game and GameLevel but not sure
 export const Game = (props) => {
 
@@ -80,6 +98,11 @@ export const Game = (props) => {
                 <div>{
                     renderPlayButton(gameState, setGameState)
                 }
+                </div>
+                <div>
+                    {
+                        renderResetButton(gameState, setGameState)
+                    }
                 </div>
             </div>
             <div style={gameBoardContainerStyle}>

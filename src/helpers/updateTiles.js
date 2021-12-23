@@ -1,11 +1,13 @@
 
 
 // updateTiles: given oldTiles and board settings, simulates the next frame of game of life
+// IMPORTANT: updateTiles must return oldTiles if none of the values change, to allow for shallow array comparison
 export const updateTiles = (oldTiles, boardSettings) => {
 
-    //placeholder logic copied from generateTiles.js
     //do simple logic for now, optimize algorithm later
 
+
+    var changed = false;
 
     const { gridWidth, gridHeight } = boardSettings;
 
@@ -18,11 +20,16 @@ export const updateTiles = (oldTiles, boardSettings) => {
         for (var j = 0; j < gridWidth; j++) {
             const sum = sumNeighbors(i, j, oldTiles, boardSettings);
             tiles[i][j] = sum === 3 || (sum === 4) * oldTiles[i][j];
+            if (!changed && tiles[i][j] !== oldTiles[i][j]) changed = true;
         }
     };
 
-
-    return tiles;
+    if (!changed) {
+        return oldTiles;
+    }
+    else {
+        return tiles;
+    }
 
 }
 

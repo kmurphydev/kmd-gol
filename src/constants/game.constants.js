@@ -4,7 +4,8 @@ export const STATES = {
     PLAY: 0,
     PAUSE: 1,
     WIN: 2,
-    LOSE: 3,
+    RESET: 3,
+    LOSE: 4,
 };
 
 export const GRID_SIZE = {
