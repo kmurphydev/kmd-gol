@@ -82,7 +82,8 @@ export const Game = (props) => {
 
     const boardSettings = {
         gridHeight: 20,
-        gridWidth: 20
+        gridWidth: 20,
+        generationLimit: 200
     }
 
     return (

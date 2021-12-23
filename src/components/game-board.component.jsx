@@ -25,7 +25,12 @@ export const GameBoard = (props) => {
 
     const [tiles, setTiles] = useState([]);
 
-    const { gridHeight, gridWidth } = boardSettings;
+    const [generationCount, setGenerationCount] = useState(0);
+    const incrementGeneration = () => {
+        setGenerationCount(generationCount + 1);
+    }
+
+    const { gridHeight, gridWidth, generationLimit } = boardSettings;
 
     useEffect(() => {
         if (tiles.length === 0 || gameState === GAME.STATES.RESET) {
@@ -36,14 +41,21 @@ export const GameBoard = (props) => {
             }
         }
         else if (gameState === GAME.STATES.PLAY) {
+
+            if (generationCount === generationLimit) {
+                console.log('game over');
+                setGameState(GAME.STATES.WIN);
+            }
+
             const newTiles = updateTiles(tiles, boardSettings);
 
             // can only do shallow compare because updateTiles returns old array if no values change
             if (newTiles === tiles) {
                 console.log('game over');
-                setGameState(GAME.STATES.WIN);
+                setGameState(GAME.STATES.LOSE);
             } else {
                 setTiles(newTiles);
+                incrementGeneration();
             }
         }
     }, [time])
